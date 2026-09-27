@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Join my Wolfhollow game</title>
+  <meta name="description" content="You're invited to a game of Werewolf on Wolfhollow. Open the app and enter the room code.">
+  <meta name="theme-color" content="#070A16">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/icon-180.png">
+  <meta property="og:title" content="Join my Werewolf game on Wolfhollow">
+  <meta property="og:description" content="Tap to join the room. Bluff, chat, vote and survive the night.">
+  <meta property="og:image" content="https://playwolfhollow.github.io/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>WOLFHOLLOW</h1>
+
+      <div id="invite" hidden>
+        <p class="tagline">You're invited to a game of Werewolf!</p>
+        <div class="code" id="code" aria-label="Room code"></div>
+        <p class="toast" id="toast" role="status"></p>
+        <div class="buttons">
+          <a class="btn primary" id="open" href="#">Open in Wolfhollow</a>
+          <button class="btn" id="copy" type="button">Copy code</button>
+        </div>
+        <p class="hint">Don't have the app yet? Install it, tap <strong>Join with a code</strong> and enter the code above.</p>
+      </div>
+
+      <div id="missing" hidden>
+        <p class="tagline">This invite link is missing its room code.</p>
+        <p class="hint">Ask your friend for the 5-letter code, then open Wolfhollow and tap <strong>Join with a code</strong>.</p>
+      </div>
+
+      <div class="buttons" id="stores">
+        <a class="btn store" data-store="ios" aria-disabled="true"><small>Coming soon to the</small>App Store</a>
+        <a class="btn store" data-store="android" aria-disabled="true"><small>Coming soon to</small>Google Play</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section>
+      <h2>How to join</h2>
+      <ol class="steps">
+        <li><span>Install <strong>Wolfhollow</strong> from the App Store or Google Play.</span></li>
+        <li><span>Tap <strong>Open in Wolfhollow</strong> above, or open the app and tap <strong>Join with a code</strong>.</span></li>
+        <li><span>Enter the room code. You'll join your friends in the lobby.</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav><a href="../">Wolfhollow</a><a href="../privacy/">Privacy Policy</a><a href="../terms/">Terms of Use</a></nav>
+      <div>© 2026 Wolfhollow</div>
+    </div>
+  </footer>
+
+  <script src="../assets/stores.js"></script>
+  <script>
+    (function () {
+      // Same rules as the app: 5 characters, no easily confused letters (0/O, 1/I).
+      var ALPHABET = /^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{5}$/;
+      var raw = new URLSearchParams(location.search).get('code') || '';
+      var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 5);
+      var valid = ALPHABET.test(code);
+
+      document.getElementById(valid ? 'invite' : 'missing').hidden = false;
+      if (!valid) return;
+
+      document.title = 'Join room ' + code + ' on Wolfhollow';
+      document.getElementById('code').textContent = code;
+      // Opens the app straight into the room when it's installed (handled by the app's join/[code] screen).
+      document.getElementById('open').href = 'wolfhollow://join/' + code;
+
+      var toast = document.getElementById('toast');
+      document.getElementById('copy').addEventListener('click', function () {
+        var done = function () { toast.textContent = 'Code copied'; };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(done, function () { toast.textContent = 'Code: ' + code; });
+        } else {
+          toast.textContent = 'Code: ' + code;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

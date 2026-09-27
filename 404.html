@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page not found · Wolfhollow</title>
+  <meta name="theme-color" content="#070A16">
+  <meta name="robots" content="noindex">
+  <script>
+    // Short invite links like /join/ABCDE go to the join page.
+    (function () {
+      var m = location.pathname.match(/\/join\/([A-Za-z0-9]{5})\/?$/);
+      if (m) location.replace('/join/?code=' + m[1].toUpperCase());
+    })();
+  </script>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>Lost in the woods</h1>
+      <p class="tagline">This page doesn't exist.</p>
+      <div class="buttons"><a class="btn primary" href="/">Go to Wolfhollow</a></div>
+    </div>
+  </header>
+</body>
+</html>
