@@ -48,6 +48,8 @@ a:hover { color: #ffe29a; }
 .brand img { width: 36px; height: 36px; border-radius: 10px; }
 .bar nav { display: flex; gap: 18px; font-size: 15px; }
 .bar nav a { color: var(--text-dim); text-decoration: none; }
+/* Narrow phones: the icon alone links home, so the menu never overlaps the name. */
+@media (max-width: 460px) { .brand span { display: none; } }
 .bar nav a:hover, .bar nav a[aria-current='page'] { color: var(--gold); }
 
 /* Hero (home and join) */
@@ -179,7 +181,15 @@ tr:last-child td { border-bottom: 0; }
 }
 .toast { min-height: 1.6em; color: var(--village); font-weight: 700; margin: 8px 0 0; }
 
+/* Support page */
+.contact { margin: 8px 0 12px; text-align: center; }
+.contact p { margin: 0; color: var(--text-dim); }
+.contact .email { margin: 8px 0 4px; font-size: clamp(20px, 5.4vw, 26px); font-weight: 800; color: var(--gold); word-break: break-all; user-select: all; }
+.contact .buttons { margin-top: 14px; }
+.small { font-size: 14px; }
+
 /* Footer */
 footer { border-top: 1px solid var(--border); margin-top: 24px; padding: 24px 0 36px; color: var(--text-faint); font-size: 15px; text-align: center; }
 footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-bottom: 10px; }
 footer a { color: var(--text-dim); }
+footer a[aria-current='page'] { color: var(--gold); text-decoration: none; }

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Support · Wolfhollow</title>
+  <meta name="description" content="Get help with Wolfhollow: joining games, connection problems, reporting players and your data.">
+  <meta name="theme-color" content="#070A16">
+  <link rel="icon" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="../"><img src="../assets/icon-180.png" alt="" width="36" height="36"><span>WOLFHOLLOW</span></a>
+      <nav><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../support/" aria-current="page">Support</a></nav>
+    </div>
+
+    <main class="doc">
+      <h1>Support</h1>
+
+      <div class="card contact">
+        <p>Questions, problems or ideas? Email us:</p>
+        <p class="email" id="email">ak1694013@gmail.com</p>
+        <div class="buttons">
+          <button class="btn primary" id="copy" type="button">Copy email</button>
+          <a class="btn" href="mailto:ak1694013@gmail.com?subject=Wolfhollow%20support">Open email app</a>
+        </div>
+        <p class="toast" id="toast" role="status"></p>
+        <p class="small">It helps to include your phone model and, if it's about a game, what happened and roughly when.</p>
+      </div>
+
+      <h2>Common questions</h2>
+
+      <h3>How do I join a friend's game?</h3>
+      <p>Ask them for the 5-letter room code, or tap the invite link they sent. In Wolfhollow, tap <strong>Join with a code</strong> and enter it.</p>
+
+      <h3>The app is stuck on “Connecting…”</h3>
+      <p>Check that your phone is online, then close and reopen the app. If you were in a game, tap <strong>Return to game</strong> on the home screen to get back in.</p>
+
+      <h3>Someone is rude or cheating. What can I do?</h3>
+      <p>Tap their name during the game and choose <strong>Report</strong> or <strong>Block</strong>. Blocking hides their messages straight away. We review every report within 24 hours.</p>
+
+      <h3>How do I delete my data?</h3>
+      <p>Wolfhollow has no accounts, and games aren't saved after they end. Uninstalling the app removes everything stored on your phone. To ask about a report involving you, email us. See the <a href="../privacy/">Privacy Policy</a> for details.</p>
+
+      <h3>How do I stop sharing usage data?</h3>
+      <p>In the app, open <strong>Settings</strong> and turn off <strong>Share anonymous usage data</strong>.</p>
+
+      <h3>Is Wolfhollow free?</h3>
+      <p>Yes. There are no ads and nothing to buy.</p>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <nav><a href="../">Wolfhollow</a><a href="../privacy/">Privacy Policy</a><a href="../terms/">Terms of Use</a><a href="../support/" aria-current="page">Support</a></nav>
+      <div>© 2026 Wolfhollow</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      var email = document.getElementById('email').textContent;
+      var toast = document.getElementById('toast');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(
+          function () { toast.textContent = 'Email copied'; },
+          function () { toast.textContent = email; },
+        );
+      } else {
+        toast.textContent = email;
+      }
+    });
+  </script>
+</body>
+</html>
